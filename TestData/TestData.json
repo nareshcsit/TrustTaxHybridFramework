@@ -1,0 +1,13 @@
+{
+  "TC-01": [
+    {
+      "UserName": "User1","PassWord": "password1"
+    }
+  ],
+  "TC-02": [
+    {
+     	"UserName": "User2",
+      "PassWord": "password2"
+    }
+  ]
+}
