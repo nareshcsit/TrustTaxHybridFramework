@@ -1,11 +1,18 @@
 package com.TrustTaxQA.Pages;
 
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
 public class MasterPage {
+	
+//	protected  WebDriver driver;
+//	public MasterPage(WebDriver Idriver)
+//	{
+//		System.out.println("Master page is executed");
+//	this.driver = Idriver;
+//	}
 
-	public MasterPage() {
-		// TODO Auto-generated constructor stub
-	}
-
-	public static final String ID_btnHome = "usernameOrEmail";
-	// public static final String Name_txtpassword="password";
+		@FindBy(name="tbxOTTClientID")public WebElement Master_clientID ;
+		//UserID
 }

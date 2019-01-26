@@ -21,52 +21,54 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 
 import com.gargoylesoftware.htmlunit.WebConsole.Logger;
-import com.google.common.io.Files;
+
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
 
 public class Reports {
-
+	// this class is for Reporting
 	public Reports() {
 		// TODO Auto-generated constructor stub
 	}
 
-	private java.lang.String ReportFolder;
-	private java.lang.String HTMLReporter;
-	private ExtentReports extentObj;
-	private File strSceenShotFolder;
-	private ExtentTest extentTest;
+	private static java.lang.String ReportFolder;
+	private static java.lang.String HTMLReporter;
+	private static ExtentReports extentObj;
+	private static File strSceenShotFolder;
 	private java.lang.String logFilePath;
-	private org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger("Logger");
-	private java.lang.String resultFolder;
+	private static org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger("Logger");
+	private static java.lang.String resultFolder;
 
-	// PropertyConfigurator.configure("Log4j.properties");
-	public void StartReport() throws Exception {
+	/*
+	 * 
+	 * Start report method is for to create a Report folder structure like
+	 * Screenshot Folder,Reports Folder,Results HTML Report
+	 */
+	public static void StartReport() throws Exception {
 		try {
-			// creating log4j
+			// Loading Log4J configuration file
 			PropertyConfigurator.configure("Log4j.properties");
+			// Capturing time stamp to append in the Result HTML file
 			SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss a");
 			Date date = new Date();
 			java.lang.String startReportTimeStamp = dateFormat.format(date).replace(' ', '_').replace(':', '-');
+			// Creating Reports Folder only for first time
 			ReportFolder = System.getProperty("user.dir") + "\\Reports\\";
 			File files = new File(ReportFolder);
-			// Creating Report foldr directory
 			if (files.mkdirs()) {
-				logger.info("Report Folder directory is created!");
+				logger.info("Reports Folder directory is created!");
 			}
 			// Appending HTML Report inside the Reports folder directory
 			HTMLReporter = ReportFolder + "Summary" + "_" + startReportTimeStamp + ".HTML";
 			extentObj = new ExtentReports(HTMLReporter, true);
-			// creating screenshots folder inside a Report directory
+			// creating screenshots folder inside a Reports directory
 			strSceenShotFolder = new File(ReportFolder + "\\ScreenShots\\");
 			if (strSceenShotFolder.mkdirs()) {
 
 				logger.info("Screenshot Folder directory is created!");
 			}
-			// Create ResultFolder
-			resultFolder = System.getProperty("user.dir") + "\\Results\\";
-			new File(resultFolder);
+			
 		} catch (Exception e) {
 			logger.info("Exception is occured at StartReport method" + "->" + " " + e.getMessage());
 
@@ -75,43 +77,36 @@ public class Reports {
 
 	}
 
-	// This cod is for to start the each testcse
-	public void startTestCase(java.lang.String testName) throws Exception {
+	// This method is for to start the test case
+	public static ExtentTest startTestCase(java.lang.String testName) throws Exception {
+		ExtentTest extentTest;
 		try {
 			extentTest = extentObj.startTest(testName);
-			// throw new Exception("throwing new excption");
 		} catch (Exception e) {
 			logger.info("Exception is occured at startTestCase method" + "->" + " " + e.getMessage());
 			throw new Exception(e.getMessage());
 		}
+		return extentTest;
 	}
 
-	// This ode is for to log th extent reports
-	public void ReportLogs(WebDriver driver, LogStatus status, java.lang.String stepName,
+	// This code is for to log the extent reports(Possible options could be
+	// PASS,FAIL,Error)
+	public static void ReportLogs(ExtentTest extentTest, WebDriver driver, LogStatus status, java.lang.String stepName,
 			java.lang.String stepDescription, Boolean screenShotRequired) throws Exception {
-
 		try {
-
-			// Writting content into HTML report
-
 			if (status.equals(LogStatus.FAIL)) {
 				extentTest.log(status, stepName, stepDescription);
-
 				throw new Exception("Test case is failed");
 			}
 			if (status.equals(LogStatus.ERROR)) {
 				extentTest.log(status, stepName, stepDescription);
-				TakeScreenshot(driver, status, stepName);
-				// throw new Exception("Thi test is failed");
+				TakeScreenshot(extentTest, driver, status, stepName);
 			}
 			if (!status.equals(LogStatus.ERROR)) {
-
 				extentTest.log(status, stepName, stepDescription);
 			}
-
-			// Based on screenshot description,scrren shot will saved
 			if (screenShotRequired) {
-				TakeScreenshot(driver, status, stepName);
+				TakeScreenshot(extentTest, driver, status, stepName);
 			}
 
 		} catch (Exception e) {
@@ -120,8 +115,9 @@ public class Reports {
 		}
 	}
 
-	// This code is for to end the each test case
-	public void EndTestCase() throws Exception {
+	// This code is for to end the each test
+	// Note: Every test case should have StartTest() and EndTest() methods
+	public static void EndTestCase(ExtentTest extentTest) throws Exception {
 		try {
 			extentObj.endTest(extentTest);
 		} catch (Exception e) {
@@ -130,12 +126,11 @@ public class Reports {
 		}
 	}
 
-	// This code is for to end the suite
-	public void EndReport() throws Exception {
-		// Flush the html rep[orts
+	// This code is for to end the suite(Flush the content into html reports)
+	public static void EndReport() throws Exception {
+
 		try {
 			extentObj.flush();
-			// Close the Extend session
 			extentObj.close();
 		} catch (Exception e) {
 			logger.info("Exception is occured at EndReport method" + "->" + " " + e.getMessage());
@@ -144,7 +139,8 @@ public class Reports {
 	}
 
 	// This code is for to take the screenshot if required
-	public void TakeScreenshot(WebDriver driver, LogStatus status, java.lang.String stepName) throws Exception {
+	public static void TakeScreenshot(ExtentTest extentTest, WebDriver driver, LogStatus status,
+			java.lang.String stepName) throws Exception {
 		try {
 			// Capturing screenshot time stamp
 			SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy HH:mm:ss a");
@@ -155,7 +151,7 @@ public class Reports {
 			java.lang.String dest = strSceenShotFolder + "\\" + stepName + "_" + screenShotTimeStamp + ".png";
 			File destination = new File(dest);
 			FileUtils.copyFile(scr, destination);
-			// Attaching scren shot in Html Report
+			// Attaching screen shot in Html Report
 			extentTest.log(status, "Snapshot below: " + extentTest.addScreenCapture(dest));
 		} catch (Exception e) {
 			logger.info("Exception is occured at TakeScreenshot method" + "->" + " " + e.getMessage());
@@ -163,9 +159,9 @@ public class Reports {
 		}
 	}
 
-	public void logger(java.lang.String message) throws Exception {
+	// This code is for to Log the content using Log4J
+	public static void logger(java.lang.String message) throws Exception {
 		try {
-
 			logger.info(message);
 		} catch (Exception e) {
 			logger.info("Exception is occured at logger method" + "->" + " " + e.getMessage());
@@ -173,13 +169,13 @@ public class Reports {
 		}
 	}
 
-	public void copyFile() throws Exception {
+	// This code is for copy the result files into 'Results' directory for
+	// Emailing purpose
+	public static void copyFile() throws Exception {
 		try {
 			File scr = new File(HTMLReporter);
 			File dest = new File("./Results/JenkinsEmail.HTML");
-
 			FileUtils.copyFile(scr, dest);
-
 		} catch (IOException e) {
 			logger.info("Exception is occured at copyFile" + "->" + " " + e.getMessage());
 

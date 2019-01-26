@@ -1,13 +1,32 @@
 {
   "TC-01": [
     {
-      "UserName": "User1","PassWord": "password1"
+      "UserName": "TESTCLIENT1","PassWord": "NARESHTC1","Environment":"QA","ProductAccessNumber": "4936","TaxYear":"2016"
     }
   ],
   "TC-02": [
     {
-     	"UserName": "User2",
-      "PassWord": "password2"
+     "UserName": "TESTCLIENT1","PassWord": "NARESHTC1","Environment":"QA","ProductAccessNumber": "4936","TaxYear":"2016"
+    }
+  ]
+  "TC-03": [
+    {
+      "UserName": "nareshcsit@gmail.com","PassWord": "Shiridi@34"
+    }
+  ],
+  "TC-04": [
+    {
+     "UserName": "nareshcsit@gmail.com","PassWord": "Shiridi@34"
+    }
+  ],
+  "TC-05": [
+    {
+      "UserName": "nareshcsit@gmail.com","PassWord": "Shiridi@34"
+    }
+  ],
+  "TC-06": [
+    {
+     "UserName": "nareshcsit@gmail.com","PassWord": "Shiridi@34"
     }
   ]
 }

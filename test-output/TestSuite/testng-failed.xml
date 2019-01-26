@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Failed suite [TestSuite]">
-  <parameter name="browser" value="Firefox"/>
-  <test name="Extent report test(failed)">
-    <parameter name="browser" value="Firefox"/>
+<suite thread-count="1" name="Failed suite [TestSuite]" parallel="none">
+  <test name="testGuru(failed)" parallel="none">
     <classes>
       <class name="com.TrustTaxQA.SmokeTest">
         <methods>
-          <include name="OpenAccount"/>
+          <include name="afterSuite"/>
+          <include name="oneSourceLogin" invocation-numbers="0"/>
+          <include name="oneSourceTrustTaxLogin" invocation-numbers="0"/>
           <include name="beforeSuite"/>
-          <include name="AccounttrustTaxLogin"/>
         </methods>
       </class> <!-- com.TrustTaxQA.SmokeTest -->
     </classes>
-  </test> <!-- Extent report test(failed) -->
+  </test> <!-- testGuru(failed) -->
 </suite> <!-- Failed suite [TestSuite] -->

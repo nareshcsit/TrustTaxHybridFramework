@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Failed suite [Suite]">
+<suite name="Failed suite [OTT Regression]" parallel="tests">
   <parameter name="browser" value="Firefox"/>
-  <test name="Test(failed)">
+  <test name="Extent report test1(failed)" parallel="tests">
     <parameter name="browser" value="Firefox"/>
     <classes>
-      <class name="com.TrustTaxQA.SmokeTest">
+      <class name="com.TrustTaxQA.Regression">
         <methods>
-          <include name="OpenAccount"/>
+          <include name="afterSuite"/>
           <include name="beforeSuite"/>
-          <include name="setData"/>
-          <include name="beforeMethod"/>
-          <include name="AccounttrustTaxLogin"/>
+          <include name="AccounttrustTaxLogin1" invocation-numbers="0"/>
         </methods>
-      </class> <!-- com.TrustTaxQA.SmokeTest -->
+      </class> <!-- com.TrustTaxQA.Regression -->
     </classes>
-  </test> <!-- Test(failed) -->
-</suite> <!-- Failed suite [Suite] -->
+  </test> <!-- Extent report test1(failed) -->
+</suite> <!-- Failed suite [OTT Regression] -->
