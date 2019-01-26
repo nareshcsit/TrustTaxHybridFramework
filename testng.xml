@@ -6,8 +6,8 @@
 <classes>
 <class name="com.TrustTaxQA.SmokeTest">
 <methods>
-   
        <include name="oneSourceLogin2" />
+       <include name="oneSourceLogin1" />
       </methods>
       </class>
 </classes>
