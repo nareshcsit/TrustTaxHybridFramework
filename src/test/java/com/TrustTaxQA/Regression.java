@@ -68,7 +68,7 @@ public class Regression extends BaseClass {
 			ExtentTest extentTest = null;
 			WebDriver driver=null;
 			try {
-				extentTest = Reports.startTestCase("Regression2");
+				extentTest = Reports.startTestCase("Regression3");
 				Extensions Extensions = new Extensions();
 				driver = Extensions.getDriver();
 
@@ -84,5 +84,24 @@ public class Regression extends BaseClass {
 			}
 	}
 
-	
+		@Test
+		public void AccounttrustTaxLogin4(Method method) throws Exception {
+			ExtentTest extentTest = null;
+			WebDriver driver=null;
+			try {
+				extentTest = Reports.startTestCase("Regression4");
+				Extensions Extensions = new Extensions();
+				driver = Extensions.getDriver();
+
+				LoginPg loginObj = PageFactory.initElements(driver, LoginPg.class);
+
+				loginObj.validateWebLauncherLogin(extentTest);
+				Extensions.EndTest(driver, extentTest);
+
+			} catch (Exception e) {
+
+				Extensions.EndTest(driver, extentTest, e.getMessage());
+			Assert.assertFalse(true);
+			}
+	}
 }
