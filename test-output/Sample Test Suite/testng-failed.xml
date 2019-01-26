@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="10" name="Failed suite [Sample Test Suite]" parallel="methods">
+  <test name="Method Test Cases(failed)" parallel="methods">
+    <classes>
+      <class name="com.TrustTaxQA.SmokeTest2">
+        <methods>
+          <include name="afterSuite"/>
+          <include name="beforeSuite"/>
+        </methods>
+      </class> <!-- com.TrustTaxQA.SmokeTest2 -->
+      <class name="com.TrustTaxQA.SmokeTest1">
+        <methods>
+          <include name="AccounttrustTaxLogin1" invocation-numbers="0"/>
+        </methods>
+      </class> <!-- com.TrustTaxQA.SmokeTest1 -->
+    </classes>
+  </test> <!-- Method Test Cases(failed) -->
+</suite> <!-- Failed suite [Sample Test Suite] -->

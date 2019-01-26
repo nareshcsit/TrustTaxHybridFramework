@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Parallel test suite]" parallel="tests">
+  <parameter name="browser" value="chrome"/>
+  <test name="Firefox Test(failed)" parallel="tests">
+    <parameter name="browser" value="Firefox"/>
+    <classes>
+      <class name="com.TrustTaxQA.SmokeTest1">
+        <methods>
+          <include name="AccounttrustTaxLogin1" invocation-numbers="0"/>
+        </methods>
+      </class> <!-- com.TrustTaxQA.SmokeTest1 -->
+      <class name="com.TrustTaxQA.SmokeTest2">
+        <methods>
+          <include name="afterSuite"/>
+          <include name="beforeSuite"/>
+        </methods>
+      </class> <!-- com.TrustTaxQA.SmokeTest2 -->
+    </classes>
+  </test> <!-- Firefox Test(failed) -->
+</suite> <!-- Failed suite [Parallel test suite] -->

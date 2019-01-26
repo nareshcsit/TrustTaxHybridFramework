@@ -1,0 +1,11 @@
+com\TrustTaxQA\SmokeTest.class
+com\TrustTaxQA\Logger\Reports.class
+com\TrustTaxQA\Pages\AccountPage.class
+com\TrustTaxQA\BaseClass.class
+com\TrustTaxQA\Regression.class
+com\TrustTaxQA\Utility\Extensions.class
+com\TrustTaxQA\Config.class
+com\TrustTaxQA\Utility\CommonControls.class
+com\TrustTaxQA\Pages\LoginPg.class
+com\TrustTaxQA\Pages\MasterPage.class
+com\TrustTaxQA\TestData\TestData.class
