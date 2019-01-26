@@ -25,7 +25,7 @@ public class SmokeTest extends BaseClass {
 	 ExtentTest extentTest = null;
 
 	 try {
-	
+	System.out.println("This is smoke test");
 	 extentTest = Reports.startTestCase("SmokeTest1");
 	
 	 Extensions Extensions = new Extensions();
