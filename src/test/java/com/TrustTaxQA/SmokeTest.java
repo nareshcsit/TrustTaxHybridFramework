@@ -161,8 +161,30 @@ public class SmokeTest extends BaseClass {
 		
 					Extensions.EndTest(driver, extentTest, e.getMessage());
 					Assert.assertFalse(true);
-		
 				}
+				}
+				@Test
+				public void oneSourceLogin5(Method method) throws Exception {
+					System.out.println("Smoke test method value is:"+method.getName());
+					ExtentTest extentTest = null;
+					WebDriver driver = null;
+					try {
+						extentTest = Reports.startTestCase("SmokeTest5");
+						Extensions Extensions = new Extensions();
+						driver = Extensions.getDriver();
+			
+						LoginPg loginObj = PageFactory.initElements(driver, LoginPg.class);
+			
+						loginObj.validateWebLauncherLogin(extentTest);
+						Reports.ReportLogs(extentTest, driver, LogStatus.PASS, "SmokeTest Account Page", " SmokeTest Account page is opened Sucessfully ", true);
+						Extensions.EndTest(driver, extentTest);
+						
+					} catch (Exception e) {
+			
+						Extensions.EndTest(driver, extentTest, e.getMessage());
+						Assert.assertFalse(true);
+			
+					}
 			}
 			
 			
