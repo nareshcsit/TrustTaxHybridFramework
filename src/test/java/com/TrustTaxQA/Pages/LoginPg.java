@@ -1,5 +1,7 @@
 package com.TrustTaxQA.Pages;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -21,6 +23,7 @@ public class LoginPg extends BaseClass{
 		this.driver = Idriver;
 		}
 	
+		@FindBy(name="tbxOTTClientID") private List<WebElement> userNames;
 	//ClientID
 	@FindBy(name="tbxOTTClientID")public WebElement clientID ;
 	//UserID
@@ -115,6 +118,19 @@ public class LoginPg extends BaseClass{
 			//CommonControls.typeinEditBox(clientID, dataUserName);
 			CommonControls.typeinEditBox(userID, dataPassWord);
 			Reports.ReportLogs(extentTest, driver, LogStatus.PASS, "Account Page", "Account page is opened Sucessfully ", true);
+		}
+		//How to use list
+		
+		public void usingListToClickOnUname()
+		{
+			for (int i=0;i<userNames.size();i++)
+			{
+				if(userNames.get(i).getText().equals("ABC"))
+				{
+					userNames.get(i).click();
+					break;
+				}
+			}
 		}
 	
 }
